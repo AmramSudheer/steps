@@ -1,0 +1,61 @@
+Step 1:
+Open Existing project(Any)
+Step 2:
+Create a new Component Interface using existing record of the project(make sure key and search key is set)
+Step 3: Test Component Interface (methods- create,find,get,save)
+Step 4: If methods are working. 
+(IF THEY ASKED ABOUT JAVA UTILITY IN CI THEN ONLY WE HAVE TO CONTINUE OTHER WISE STOP)
+Generate a java template
+Step 5: Go to build and choose PeopleSoft APIs. Choose Java and select APIs to build
+Example:
+CompIntfc.TRAINING_CI(IN TRAINING PLACE WE HAVE TO ADD OUR COMPONENT INTERFACE NAME)
+CompIntfc.TRAINING_CICollection
+
+CompIntfc.CompIntfcPropertyInfo
+CompIntfc.CompIntfcPropertyInfoCollection
+----------------------------------------------------
+Step 6: Now move to
+C:\Users\lkmuser\psft\pt\8.62.06\ExtAPI_Java\PeopleSoft\Generated\CompIntfc 
+and verify all the java classes are present (all 6)
+then go to Now move to 
+C:\Users\lkmuser\psft\pt\8.62.06\ExtAPI_Java 
+and open CMD to compile the java classes(to generate .class files)
+ 
+run below command:
+--------------
+//1ST
+
+javac -cp "C:\Users\lkmuser\psjoa.jar;." PeopleSoft\Generated\CompIntfc\CompIntfcPropertyInfo.java PeopleSoft\Generated\CompIntfc\CompIntfcPropertyInfoCollection.java PeopleSoft\Generated\CompIntfc\ICompIntfcPropertyInfo.java PeopleSoft\Generated\CompIntfc\ICompIntfcPropertyInfoCollection.java PeopleSoft\Generated\CompIntfc\IJobCi.java PeopleSoft\Generated\CompIntfc\IJobCiCollection.java PeopleSoft\Generated\CompIntfc\JobCi.java PeopleSoft\Generated\CompIntfc\JobCiCollection.java
+(EDIT ACCORDING TO YOUR FILES)
+
+then run this:
+-------------
+
+jar cvf JobCIClasses.jar PeopleSoft\Generated\CompIntfc\CompIntfcPropertyInfo*.class PeopleSoft\Generated\CompIntfc\CompIntfcPropertyInfoCollection*.class PeopleSoft\Generated\CompIntfc\ICompIntfcPropertyInfo*.class PeopleSoft\Generated\CompIntfc\ICompIntfcPropertyInfoCollection*.class PeopleSoft\Generated\CompIntfc\IJobCi*.class PeopleSoft\Generated\CompIntfc\IJobCiCollection*.class PeopleSoft\Generated\CompIntfc\JobCi*.class PeopleSoft\Generated\CompIntfc\JobCiCollection*.class
+
+-------------------------------------------------------------------------------------------------------
+Step 7:
+Then open eclipse and create java project ,class  and paste the generated code(IT WILL PRESENT ON THIS LOCATION C:\Users\lkmuser\AppData\Local\Temp\2\(YOUR JAVA TEMPLATE) . (version 21-JDK)
+OPEN THAT JAVA PROJECT ,RIGHT CLICK ON THAT GOTO BUILD PATH-->BUILD PATH CONFIGURATION--> IT OPEN NEW PAGE INTHAT WE HAVE SELECT CLASS PATH CLICK ON THAT THEN RIGHT SIDE TOOLS ARE ENABLED ,CLICK ON ADD EXTERNAL JAR FILES.
+include jar files- psjoa.jar(LOCATION :C:\Users\lkmuser) and AGAIN CLICK ON CLASS PATH AND the jar you have generated(TrainingCIClasses.jar)(LOCATION:C:\Users\lkmuser\psft\pt\8.62.06\ExtAPI_Java).CLICK ON APPLY AND CLOSE.
+------------------------------------------------------------------------------------------------------
+From eclipse menu. go to run configuration and set -DTM_ALLOW_NOTLS=Y(VM arguments)
+ 
+-------------------------------------------------------------------------------------------
+To run program:
+Enter Application Server Machine Name: AZ-LKM-OPS-02
+Enter Application Server Port Number: 9033
+Enter Domain Connection Password: PS
+Enter PeopleSoft UserID: PS
+Enter PeopleSoft User Password: PS
+CHECK WHEATHER EXISTING VALUES ARE COMING OR NOT...
+==========================================================
+
+
+********IF ERRORS CAMES ONLY ERROR AT EXAMPLE_ID THEN DO STEP BELOW:*************
+        ------------------------------------------------------------
+       
+        GIVE IN BRACKET(new BigDecimal(ExampleId));
+        AFTER ADDING THIS CLICK ON ERROR IT SHOWS THAT IMPORT BIGDECIMAL THEN DOUBLE CLICK ON THAT.
+
+
