@@ -1,0 +1,128 @@
+
+If GRN_EMAIL_ID.Value <> "" Then
+
+   If Find("@", GRN_EMAIL_ID.Value) = 0 Then
+      Error ("Please enter a valid Email ID.");
+   End-If;
+
+End-If;
+
+==========================================================
+If GRN_IMID_TYPE.Value <> "" And
+   GRN_IMID.Value = "" Then
+
+   Error ("Please enter IM ID.");
+
+End-If;
+
+If GRN_IMID_TYPE.Value = "" And
+   GRN_IMID.Value <> "" Then
+
+   Error ("Please select IM Type.");
+
+End-If;
+==================================================
+
+If GRN_BLOOD_TYPE.Value = "" Then
+   Error ("Blood Type is required.");
+End-If;
+
+----
+============================================
+//age check
+Local number &age; 
+&age = ZZ_TRAINING_REC.AGE.Value; 
+ 
+If &age >= 18 Then 
+   MessageBox(0, "", 0, 0, "Eligible for employment"); 
+Else 
+   MessageBox(0, "", 0, 0, "Not eligible for employment"); 
+End-If; 
+
+====================================
+
+//salary bonus calculation
+Local number &salary; 
+Local number &bonus; 
+&salary = ZZ_TRAINING_REC.SALARY.Value; 
+ 
+If &salary >= 50000 Then 
+   &bonus = &salary * 0.10; 
+Else 
+   &bonus = &salary * 0.05; 
+End-If; 
+ 
+MessageBox(0, "", 0, 0, "Bonus amount = " | &bonus); 
+============================================
+
+
+//status evaluator
+Local string &status; 
+Local boolean &isActive; 
+&status = ZZ_TRAINING_REC.STATUS.Value; 
+ 
+If &status = "A" Then 
+   &isActive = True; 
+Else 
+   &isActive = False; 
+End-If; 
+ 
+If &isActive Then 
+   MessageBox(0, "", 0, 0, "Employee is active"); 
+Else 
+   MessageBox(0, "", 0, 0, "Employee is inactive"); 
+End-If; 
+===========================================
+
+//grading logic
+Local number &marks; 
+Local string &grade; 
+&marks = ZZ_TRAINING_REC.MARKS.Value; 
+If &marks >= 75 Then 
+   &grade = "A"; 
+Else 
+   If &marks >= 50 Then 
+      &grade = "B"; 
+   Else 
+      &grade = "C"; 
+   End-If; 
+End-If; 
+ 
+MessageBox(0, "", 0, 0, "Grade = " | &grade); 
+===========================================
+
+//access control check
+Local string &role; 
+Local number &trainingHours; 
+Local boolean &accessRequested; 
+&role = ZZ_TRAINING_REC.ROLE.Value; 
+&trainingHours = ZZ_TRAINING_REC.TRAINING_HRS.Value; 
+&accessRequested = ZZ_TRAINING_REC.ACCESS_REQ.Value; 
+ 
+If &accessRequested And 
+      &role = "ADMIN" And 
+      &trainingHours >= 8 Then 
+   MessageBox(0, "", 0, 0, "Access can be approved"); 
+Else 
+   MessageBox(0, "", 0, 0, "Access requirements are not complete"); 
+End-If; 
+
+
+//for loop
+Local number &i;
+For &i = 1 To 5
+   MessageBox(0, "", 0, 0,
+      "Welcome to PeopleCode Training - Session " | &i);
+End-For;
+
+====================================================
+
+ //scroll level: when we have parent-child
+Local Rowset &rs;
+Local number &cnt;
+&rs = GetLevel0()(1).GetRowset(Scroll.PROJECT_REC);
+&cnt = &rs.ActiveRowCount;
+MessageBox(0, "", 0, 0, "Total Projects = " | &cnt);
+
+
+
