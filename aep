@@ -1,0 +1,84 @@
+AEP SQL (Application Engine Program with a SQL Action)
+
+1. Create the required fields.
+2. Create a record, add the required fields to it, and save it.
+3. Build the record.
+4. Create an Application Engine program and save it.
+5. Right-click the step, select Insert Action, choose SQL, and save.
+6. Right-click the SQL action, select View SQL, and enter the following code, making any changes your requirements call for:
+
+   UPDATE PS_BOOK_REC
+      SET BOOK_NAME = 'RAMAYANAM'
+    WHERE BOOK_NAME = 'KING';
+
+7. After saving, close the View SQL window and select Save All.
+8. Run the program, enter a unique Run Control ID, and check the output log (File) for the results.
+9. Query the database to confirm that the data has been updated.
+
+
+AEP Welcome Log (Log Message Action)
+
+1. Create the required fields.
+2. Create a record, add the required fields to it, and save it.
+3. Build the record.
+4. Create an Application Engine program and save it.
+5. Right-click the step, select Insert Action, choose Log Message, and save.
+6. Open the PIA browser and sign in. Navigate to Main Menu > PeopleTools > Utilities > Administration > Message Catalog.
+7. Click Add a New Value. Enter a unique Message Set Number, note it down, and click Add.
+8. Enter a description and a unique Message Number, and note it down.
+9. Enter the message text you want to display.
+10. Click Save.
+11. Return to Application Designer. Under the Log Message action, enter the Message Set Number and Message Number that you noted down.
+12. Select Save All, then open File Explorer and check the .log file in C:\Temp.
+13. If the message appears in the log, the process is complete.
+
+
+AEP CSV to Table
+
+1. Create the required fields.
+2. Create a record, add the required fields to it, and save it.
+3. Build the record.
+4. Create an Application Engine program and save it.
+5. Right-click the step, select Insert Action, choose PeopleCode, and save.
+6. Create a file layout and save it. Drag the main record into the file layout, and save again.
+7. Open the file layout and select Properties. On the Use tab, change the format from Fixed to CSV.
+8. Open Notepad and enter sample data, with the values in the same order as the fields in the record.
+9. Choose File > Save As, name the file with a .csv extension, set Save as type to All Files, and click Save.
+10. Return to Application Designer and select Save All.
+11. Goto File Layout Goto priview,add Segment record select our record there and Goto browse and select csv file which we have created.then click on Refresh.It will show the data.click on save all.
+12. Open the Application Engine program you created, right-click the PeopleCode action,goto view people code and drag the  file layout you created.Then click save and close this.Open Aplication Engine Pogram.  
+13. Save the program.
+14. Select Save All and run the program. If there are no errors, go to SQL*Plus and check that the new data has been added to the record.
+
+
+AEP Table to CSV
+
+1. Create the required fields.
+2. Create a record, add the required fields to it, and save it.
+3. Build the record.
+4. Create an Application Engine program and save it.
+5. Right-click the step, select Insert Action, choose PeopleCode, and save.
+6. Open Notepad and save a blank file with a .csv extension on the desktop.
+7. Note down the location of the file.
+8. Open the Application Engine program you created, right-click the PeopleCode action, and add the code below. Update the file path and name, the file layout name, and the record name to match yours.
+
+   Local File &FILE1;
+   Local Record &REC1;
+   Local SQL &SQL1;
+
+   &FILE1 = GetFile("C:\Users\lkmuser\Desktop\Book_DATA1.csv", "W", "a", %FilePath_Absolute);
+
+   If (&FILE1.IsOpen) Then
+      If (&FILE1.SetFileLayout(FileLayout.READ_BOOK)) Then
+         &REC1 = CreateRecord(Record.BOOK_REC);
+         &SQL1 = CreateSQL("%Selectall(:1)", &REC1);
+         While &SQL1.Fetch(&REC1)
+            &FILE1.WriteRecord(&REC1);
+         End-While;
+      End-If;
+   End-If;
+
+   &FILE1.Close();
+
+9. Save the program and close it.
+10. Select Save All and run the program. If there are no errors, open the CSV file and check that the data has been added to it.
