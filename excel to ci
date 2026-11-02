@@ -1,0 +1,32 @@
+                                            EXCEL TO CI
+
+Goto>> E:\HCM\pt\ps_home8.62.06\excel
+Open exceltoci2007 excel sheet>>save as(name)
+
+//Copy your pia browser link till .net
+http://az-lkm-ops-02.yudzy5nqkufuldo0m2rvstd2xd.rx.internal.cloudapp.net/
+
+
+	Web Server Machine Name:	   az-lkm-ops-02.yudzy5nqkufuldo0m2rvstd2xd.rx.internal.cloudapp.net		
+           Optional Keys:
+	Protocol:			
+	HTTP Port:	8000		
+	Portal:	EMPLOYEE		
+	PeopleSoft Site Name:	ps		
+	Node:	HRMS		
+	Language Code:	ENG		
+				
+	Chunking Factor:	40		
+	Error Threshold:	 		
+	Submit Blanks as Input:			
+	Action:	CREATE		
+
+TEMPLATE>> ADDIONS >>NEW TEMPLATE
+
+USER ID:PS
+PASSWORD:PS
+CI NAME: EXAMPLE_CI
+CHECK>>GENERATE LOG.AND CLICK ON OK. THEN IT WILL OPEN THE TEMPLATE SELECT THAT SELECT ALL INPUT CELLS.AFTER SELECTING THAT GOTO NEW DATA INTPUT THAT BESIDES NEW TEMPLATE.
+CLICK ON THAT IT WILL OPEN NEW DATA INPUT ADD VALUES THERE�AND CLICK ANY WHARE NOT IN THAT DATA INPUT .THEN CLICK STAGE FOR SUBMISSION>>SUBMIT DATA.
+CHECK WHEATHER ITS ADDED IN SQL OR NOT.
+
